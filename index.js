@@ -1,9 +1,10 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getDatabase, ref, push } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { dbURL } from '../shopping-cart/function'
 
 // location of the database
 const appSettings = {
-  databaseURL: "https://shopping-cart-e321d-default-rtdb.firebaseio.com/"
+  databaseURL: dbURL
 }
 
 const app = initializeApp(appSettings);
