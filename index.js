@@ -8,7 +8,7 @@ const appSettings = {
 
 const app = initializeApp(appSettings);
 const database = getDatabase(app);
-const data = ref(database, "EPL Team")
+const shoppingItemsInDB = ref(database, "ShoppingList")
 
 const input = document.getElementById("input-field");
 const button = document.getElementById("add-button");
@@ -17,7 +17,7 @@ button.addEventListener("click", () =>{
   const inputValue = input.value;
 
   // Push data to the database
-  push(data, inputValue)
+  push(shoppingItemsInDB, inputValue)
 
   console.log(`${inputValue} is added to databse...`);
 })
