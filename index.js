@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getDatabase, ref, push } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
+import { getDatabase, ref, push, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { dbURL } from '../shopping-cart/function'
 
 // location of the database
@@ -9,21 +9,29 @@ const appSettings = {
 
 const app = initializeApp(appSettings);
 const database = getDatabase(app);
-const shoppingItemsInDB = ref(database, "ShoppingList")
+const shoppingItemsInDB = ref(database, "ShoppingList");
 
 const input = document.getElementById("input-field");
 const button = document.getElementById("add-button");
 const shoppingList = document.getElementById("shopping-list");
 
+onValue(shoppingItemsInDB, (db) => {
+  shoppingList.innerHTML = "";
+  db.forEach((value) => {
+    const shoppingListItem = value.val();
+    shoppingList.innerHTML += `<li>${shoppingListItem}</li>`;
+  })
+});
+
 button.addEventListener("click", () =>{
   const inputValue = input.value;
 
   // Push data to the database
-  // push(shoppingItemsInDB, inputValue)
+  push(shoppingItemsInDB, inputValue);
 
-  shoppingList.innerHTML += `<li>${inputValue}</li>`;
+  // shoppingList.innerHTML += `<li>${inputValue}</li>`;
 
   console.log(`${inputValue} is added to databse...`);
-  
+
   input.value = "";
 })
