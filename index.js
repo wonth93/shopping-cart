@@ -21,8 +21,9 @@ button.addEventListener("click", () =>{
   // Push data to the database
   // push(shoppingItemsInDB, inputValue)
 
-  shoppingList.innerHTML += `<li>${inputValue}</li>`
-
+  shoppingList.innerHTML += `<li>${inputValue}</li>`;
 
   console.log(`${inputValue} is added to databse...`);
+  
+  input.value = "";
 })
