@@ -2,11 +2,15 @@ const shoppingList = document.getElementById("shopping-list");
 const input = document.getElementById("input-field");
 
 const deleteInput = () => {
-  input.value = "";
+  return input.value = "";
 }
 
-const addShoppingListItem = (input) => {
+const printShoppingList = (input) => {
   return shoppingList.innerHTML += `<li>${input}</li>`
 }
 
-export { deleteInput, addShoppingListItem };
+const clearShoppingList = () => {
+  return shoppingList.innerHTML = "";
+}
+
+export { deleteInput, printShoppingList, clearShoppingList };

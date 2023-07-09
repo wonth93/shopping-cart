@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getDatabase, ref, push, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
-import { deleteInput, addShoppingListItem } from '../shopping-cart/function';
+import { deleteInput, printShoppingList, clearShoppingList } from '../shopping-cart/function';
 import { dbURL } from './variable';
 
 // location of the database
@@ -16,13 +16,13 @@ const input = document.getElementById("input-field");
 const button = document.getElementById("add-button");
 const shoppingList = document.getElementById("shopping-list");
 
-// onValue(shoppingItemsInDB, (db) => {
-//   shoppingList.innerHTML = "";
-//   db.forEach((value) => {
-//     const shoppingListItem = value.val();
-//     shoppingList.innerHTML += `<li>${shoppingListItem}</li>`;
-//   })
-// });
+onValue(shoppingItemsInDB, (db) => {
+  clearShoppingList();
+  db.forEach((value) => {
+    const shoppingListItem = value.val();
+    printShoppingList(shoppingListItem);
+  })
+});
 
 button.addEventListener("click", () =>{
   const inputValue = input.value;
@@ -30,7 +30,7 @@ button.addEventListener("click", () =>{
   // Push data to the database
   push(shoppingItemsInDB, inputValue);
 
-  addShoppingListItem(inputValue);
+  // printShoppingList(inputValue);
 
   console.log(`${inputValue} is added to databse...`);
 
