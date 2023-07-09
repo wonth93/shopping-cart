@@ -1,6 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
 import { getDatabase, ref, push, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
-import { dbURL, deleteInput, addShoppingListItem } from '../shopping-cart/function'
+import { deleteInput, addShoppingListItem } from '../shopping-cart/function';
+import { dbURL } from './variable';
 
 // location of the database
 const appSettings = {
@@ -27,7 +28,7 @@ button.addEventListener("click", () =>{
   const inputValue = input.value;
 
   // Push data to the database
-  // push(shoppingItemsInDB, inputValue);
+  push(shoppingItemsInDB, inputValue);
 
   addShoppingListItem(inputValue);
 
