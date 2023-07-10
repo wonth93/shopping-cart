@@ -16,11 +16,12 @@ const input = document.getElementById("input-field");
 const button = document.getElementById("add-button");
 const shoppingList = document.getElementById("shopping-list");
 
+// Fetching database items
 onValue(shoppingItemsInDB, (db) => {
   clearShoppingList();
-  db.forEach((value) => {
-    const shoppingListItem = value.val();
-    printShoppingList(shoppingListItem);
+  const shoppingListItem = Object.values(db.val());
+  shoppingListItem.forEach((item) => {
+    printShoppingList(item);
   })
 });
 
