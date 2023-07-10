@@ -5,10 +5,15 @@ const deleteInput = () => {
   return input.value = "";
 }
 
-const printShoppingList = (input) => {
+const printShoppingList = (input, keys) => {
   const newElement = document.createElement("li");
   newElement.textContent = input;
   shoppingList.append(newElement);
+
+  newElement.addEventListener("dblclick", () => {
+    console.log(keys)
+  })
+
 }
 
 const clearShoppingList = () => {

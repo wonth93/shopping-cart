@@ -1,6 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js';
-import { getDatabase, ref, push, onValue } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
-import { deleteInput, printShoppingList, clearShoppingList } from '../shopping-cart/function';
+import { getDatabase, ref, push, onValue, remove } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js';
 import { dbURL } from './variable';
 
 // location of the database
@@ -16,14 +15,35 @@ const input = document.getElementById("input-field");
 const button = document.getElementById("add-button");
 const shoppingList = document.getElementById("shopping-list");
 
+const deleteInput = () => {
+  return input.value = "";
+}
+
+const clearShoppingList = () => {
+  return shoppingList.innerHTML = "";
+}
+
+const printShoppingList = (input, keys) => {
+  const newElement = document.createElement("li");
+  newElement.textContent = input;
+  shoppingList.append(newElement);
+
+  newElement.addEventListener("dblclick", () => {
+    const shoppingItemsDBLocation = ref(database, `ShoppingList/${keys}`);
+    console.log(`${input} is deleted from the databse...`);
+    remove(shoppingItemsDBLocation);
+  })
+}
+
 // Fetching database items
 onValue(shoppingItemsInDB, (db) => {
   clearShoppingList();
-  const shoppingListItem = Object.values(db.val());
-  const key = Object.keys(db.val())
+  const objDB = Object.entries(db.val())
   
-  shoppingListItem.forEach((item) => {
-    printShoppingList(item);
+  objDB.forEach((item) => {
+    const key = item[0];
+    const shoppingListItem = item[1];
+    printShoppingList(shoppingListItem, key);
   })
 });
 
