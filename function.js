@@ -6,7 +6,7 @@ const deleteInput = () => {
 }
 
 const printShoppingList = (input) => {
-  return shoppingList.innerHTML += `<li>${input}</li>`
+  return shoppingList.innerHTML += `<li class="shopping-items">${input}</li>`
 }
 
 const clearShoppingList = () => {

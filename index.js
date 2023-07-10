@@ -31,8 +31,6 @@ button.addEventListener("click", () =>{
   // Push data to the database
   push(shoppingItemsInDB, inputValue);
 
-  // printShoppingList(inputValue);
-
   console.log(`${inputValue} is added to databse...`);
 
   deleteInput();
