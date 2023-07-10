@@ -20,6 +20,8 @@ const shoppingList = document.getElementById("shopping-list");
 onValue(shoppingItemsInDB, (db) => {
   clearShoppingList();
   const shoppingListItem = Object.values(db.val());
+  const key = Object.keys(db.val())
+  
   shoppingListItem.forEach((item) => {
     printShoppingList(item);
   })

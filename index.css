@@ -42,7 +42,7 @@ button {
   font-family: 'Rubik', sans-serif;
 }
 
-#shopping-list {
+ul {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -50,7 +50,7 @@ button {
   padding: 0;
 }
 
-.shopping-items {
+li {
   list-style-type: none;
   text-align: center;
   background-color: #FFFDF8;
