@@ -39,7 +39,6 @@ const printShoppingList = (input, keys) => {
 // Fetching database items
 onValue(shoppingItemsInDB, (db) => {
   clearShoppingList();
-  console.log(db.exists());
 
   if (db.exists()) {
     const objDB = Object.entries(db.val());
