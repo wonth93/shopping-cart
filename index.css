@@ -63,5 +63,9 @@ li {
 }
 
 li:hover {
-  background-color: #D21F3C;
+  background-color: #FFECC7;
+}
+
+button:hover {
+  background-color: #432000;
 }

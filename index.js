@@ -28,6 +28,7 @@ const printShoppingList = (input, keys) => {
   newElement.textContent = input;
   shoppingList.append(newElement);
 
+  // remove shopping items when double click
   newElement.addEventListener("dblclick", () => {
     const shoppingItemsDBLocation = ref(database, `ShoppingList/${keys}`);
     console.log(`${input} is deleted from the databse...`);
@@ -38,13 +39,20 @@ const printShoppingList = (input, keys) => {
 // Fetching database items
 onValue(shoppingItemsInDB, (db) => {
   clearShoppingList();
-  const objDB = Object.entries(db.val())
-  
-  objDB.forEach((item) => {
-    const key = item[0];
-    const shoppingListItem = item[1];
-    printShoppingList(shoppingListItem, key);
-  })
+  console.log(db.exists());
+
+  if (db.exists()) {
+    const objDB = Object.entries(db.val());
+    
+    objDB.forEach((item) => {
+      const key = item[0];
+      const shoppingListItem = item[1];
+      printShoppingList(shoppingListItem, key);
+    });
+  } else {
+    shoppingList.innerHTML = `<p style="color:red;">No items here...yet</p>`;
+  }
+
 });
 
 button.addEventListener("click", () =>{
