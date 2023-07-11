@@ -1,10 +1,11 @@
 # Shopping Cart Mobile App
 
-Quick start:
+A shopping cart app for planning and keeping track of shopping items.
+
+This app is built by JavaScript, HTML, CSS, and Firebase.
 
 ```
-$ npm install
-$ npm start
+https://shoppingwithmw.netlify.app
 ````
 
 Happy Coding!
