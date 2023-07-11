@@ -65,4 +65,11 @@ button.addEventListener("click", () =>{
 
   deleteInput();
   
-})
+});
+
+input.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    button.click()
+  }
+});
